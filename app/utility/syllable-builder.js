@@ -107,7 +107,7 @@ export const syllablesOneLine = s => {
 
       // console.log(parsed)
       if (greekVowels.includes(s[i])) {
-        parsed += ' \u2053 ';
+        parsed += ' \u00B7 ';
         continue;
       } else if (checkWhiteSpace(s[i])){
         // console.log(s[i])
@@ -123,7 +123,7 @@ export const syllablesOneLine = s => {
         i++;
         continue;
       } else {
-        parsed += ' \u2053 '
+        parsed += ' \u00B7 '
         continue;
       }
       console.log('154 - ', s[i])
@@ -146,7 +146,7 @@ export const syllablesOneLine = s => {
       while (checkWhiteSpace(s[i])) {
         i++;
         console.log('leading consonant - breaking cuz whitespace')
-        // parsed += ' \u2053 '
+        // parsed += ' \u00B7 '
         // continue;
       }
       // next character must be vowel: play the same vowel game as above
@@ -158,7 +158,7 @@ export const syllablesOneLine = s => {
         console.log('183 - ', s[i])
 
         if (greekVowels.includes(s[i])) {
-          parsed += ' \u2053 ';
+          parsed += ' \u00B7 ';
           continue;
         } else if (checkWhiteSpace(s[i])){
           // console.log(s[i])
@@ -171,7 +171,7 @@ export const syllablesOneLine = s => {
         // if (checkWhiteSpace(s[i]) || greekVowels.includes(s[i])) {
         //   console.log('185 - breaking out')
         //   console.log(parsed)
-        //   parsed += ' \u2053 '
+        //   parsed += ' \u00B7 '
         //   continue;
         // }
 
@@ -183,7 +183,7 @@ export const syllablesOneLine = s => {
           i++
           continue;
         } else {
-          parsed += ' \u2053 '
+          parsed += ' \u00B7 '
           continue;
         }
 
@@ -193,7 +193,7 @@ export const syllablesOneLine = s => {
     if (i >= s.length) {
       i++;
     } else {
-      parsed += ' \u2053 ';
+      parsed += ' \u00B7 ';
     }
     console.log(parsed)
 
