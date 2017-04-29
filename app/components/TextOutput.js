@@ -6,17 +6,19 @@ export default function TextOutPut (props) {
 
   const transliterated = props.currentTransliterated;
   let scanText = props.currentScanner;
-
-  const scanned = 'scan text!';
+  const syllables = props.syllables;
 
   const toggleScanner = () => {
     props.toggleScanner();
+    const builtSyllables = buildSyllables(transliterated);
+    props.setSyllables(builtSyllables);
+    console.log('\n\nset syllables called\n\n')
     console.log(props.currentTransliterated)
   };
 
   return (
     <div>
-      <pre className='output' rows='20'> {scanText ? scanned : transliterated } </pre>
+      <pre className='output' rows='20'> {scanText ? syllables : transliterated } </pre>
       <button type='submit' className='btn' onClick={ toggleScanner }>Toggle Scanner</button>
     </div>
   )
