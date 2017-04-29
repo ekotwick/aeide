@@ -11,14 +11,25 @@ export default class Scansion extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      text: ''
+      text: '',
+      scanned: '',
+      scan: false
     }
 
     this.setInput = this.setInput.bind(this);
+    this.toggleScanner = this.toggleScanner.bind(this);
   }
 
   setInput(text) {
     this.setState({text});
+  }
+
+  toggleScanner() {
+    if (!this.state.scan) {
+      this.setState({scan: true})
+    } else {
+      this.setState({scan: false})
+    }
   }
 
   render() {
@@ -32,7 +43,9 @@ export default class Scansion extends React.Component {
           </div>
           <div className='col-lg-6'>
             <TextOutput 
-              currentState={this.state.text}/>
+              currentState={this.state.text}
+              currentScanner={this.state.scan}
+              toggleScanner={this.toggleScanner}/>
           </div>
         </div>
       </div>
