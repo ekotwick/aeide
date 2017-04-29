@@ -1,11 +1,11 @@
 import React from 'react';
-import { transliterator } from '../utility/transliterators';
+// import { transliterator } from '../utility/transliterators'; // REMOVE
 
 export default function TextInput (props) {
 
   const textEnter = e => {
     console.log(e.target.value)
-    props.setInput(e.target.value);
+    props.setText(e.target.value);
   }
 
   const handleSubmit = () => {
