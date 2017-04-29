@@ -7,7 +7,7 @@ const Home = () => (
 		<h2> Type Homer verse </h2>
 		<h3> The app parses the metric elements and scans the lines for you</h3>
 		<h3>
-			<Link to='/scansion/' >Try it</Link>
+			<Link to='scansion' >Try it</Link>
 		</h3>
 	</div>
 );
