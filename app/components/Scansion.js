@@ -52,13 +52,13 @@ export default class Scansion extends React.Component {
     return (
       <div className='container-fluid'>
         <div className='row'>
-          <div className='col-lg-6'>
+          <div className='col-lg-5'>
             <TextInput 
               setText={this.setText}
               currentText={this.state.text}
               setTransliterated={this.setTransliterated}/>
           </div>
-          <div className='col-lg-6'>
+          <div className='col-lg-5'>
             <TextOutput 
               currentTransliterated={this.state.transliterated}
               currentScanner={this.state.scan}
