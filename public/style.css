@@ -9,6 +9,11 @@
 	flex-wrap: 'wrap';
 }
 
+.input {
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 13px;
+}
+
 .output {
   height: 500px;
 }

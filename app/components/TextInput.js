@@ -14,7 +14,7 @@ export default function TextInput (props) {
     <div>
       <form className='form-vertical' onSubmit={ handleSubmit }>
         <fieldset>
-          <textarea className='form-control' rows='20' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
+          <textarea className='form-control input' rows='20' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
           <button type="submit" className="btn btn-success">
             Save Session
           </button>
