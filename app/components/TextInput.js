@@ -3,11 +3,12 @@ import React from 'react';
 export default function TextInput (props) {
 
   const textEnter = e => {
-    console.log(e.target.value);
+    props.setInput(e.target.value);
   }
 
   const handleSubmit = () => {
-    console.log('submit handled');
+    let currentState = props.currentState;
+    console.log(currentState);
   }
 
   return (
