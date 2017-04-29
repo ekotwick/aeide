@@ -11,8 +11,14 @@ export default class Scansion extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      text: ''
     }
+
+    this.setInput = this.setInput.bind(this);
+  }
+
+  setInput(text) {
+    this.setState({text});
   }
 
   render() {
@@ -20,10 +26,13 @@ export default class Scansion extends React.Component {
       <div className='container-fluid'>
         <div className='row'>
           <div className='col-lg-6'>
-            <TextInput />
+            <TextInput 
+              setInput={this.setInput}
+              currentState={this.state.text}/>
           </div>
           <div className='col-lg-6'>
-            <TextOutput />
+            <TextOutput 
+              currentState={this.state.text}/>
           </div>
         </div>
       </div>
