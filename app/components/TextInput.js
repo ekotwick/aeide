@@ -4,13 +4,13 @@ import React from 'react';
 export default function TextInput (props) {
 
   const textEnter = e => {
-    console.log(e.target.value)
     props.setText(e.target.value);
+    props.setTransliterated(e.target.value);
   }
 
   const handleSubmit = () => {
-    let currentState = props.currentState;
-    console.log(currentState);
+    let currentText = props.currentText;
+    console.log(currentText);
   }
 
   return (

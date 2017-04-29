@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import TextInput from './TextInput';
 import TextOutput from './TextOutput';
+import { transliterator } from '../utility/transliterators';
 
 // ———————— COMPONENT ———————— // 
 
@@ -12,12 +13,12 @@ export default class Scansion extends React.Component {
     super(props)
     this.state = {
       text: '',
-      scanned: '',
+      transliterated: '',
       scan: false
     }
 
     this.setText = this.setText.bind(this);
-    this.setScanned = this.setScanned.bind(this);
+    this.setTransliterated = this.setTransliterated.bind(this);
     this.toggleScanner = this.toggleScanner.bind(this);
   }
 
@@ -25,8 +26,9 @@ export default class Scansion extends React.Component {
     this.setState({text});
   }
 
-  setScanned(scanned) {
-    this.setState({scanned});
+  setTransliterated(toTransliterate) {
+    const transliterated = transliterator(toTransliterate)
+    this.setState({transliterated});
   }
 
   toggleScanner() {
@@ -44,14 +46,14 @@ export default class Scansion extends React.Component {
           <div className='col-lg-6'>
             <TextInput 
               setText={this.setText}
-              currentState={this.state.text}/>
+              currentText={this.state.text}
+              setTransliterated={this.setTransliterated}/>
           </div>
           <div className='col-lg-6'>
             <TextOutput 
-              currentState={this.state.text}
+              currentTransliterated={this.state.transliterated}
               currentScanner={this.state.scan}
-              toggleScanner={this.toggleScanner}
-              setScanned={this.setScanned}/>
+              toggleScanner={this.toggleScanner}/>
           </div>
         </div>
       </div>
