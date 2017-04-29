@@ -1,104 +1,96 @@
-# Hi, I'm bones
+# Senior Enrichment Project
 
-I'm a happy little skeleton. You can clone me to use as a starter on your projects!
-I have React, Redux, Sequelize, and Express all just rattling around in here ready
-to go.
+Make a thing!
 
-## I need node >= 6.7.0
+## Getting started
 
-If you don't have it, I'll complain and tell you how to install it.
+1. Fork and clone this repo
+2. *Set the name of your project in `package.json`*. The skeleton intentionally ships with an invalid name.
+3. `npm install`
+4. Check out the mock-view in the `wireframes` folder
+5. Start the build process with: `npm run build-watch`
+6. In another terminal, start your app with `npm start`
+7. If you navigate to the URL you should see some UI already :) [We already have some connection code to get you started]
 
-## 1. Make me into something!
+## Requirements
 
-We recommend that you **clone**, not fork, this repo – unless your intention is
-to develop Bones proper instead of using Bones as the starting point for your
-own application.
+### The Premise
 
-Start by doing either of the following:
+You are the CTO of the Margaret Hamilton Interplanetary Academy of JavaScript. Create a RESTful web platform that allows you to manage your students and campuses.
 
-* Create a GitHub repo and clone it, or
-* `git init` in an empty directory on your machine.
+### The tools
 
-After you have a repo on your machine:
+Use at least sequelize, express, react, and redux when creating this app. You can incorporate any additional libraries or tools you wish.
 
-```sh
-git remote add bones https://github.com/FullstackAcademy/bones.git
-git fetch bones
-git merge bones/master
+### DB Design
+
+- Students
+  * have profile info (e.g. name and email)
+  * must be assigned to a campus
+
+- Campuses
+  * have info such as a name and image
+  * can have many students assigned (may have none)
+  
+### Views and Functionality
+#### See Wireframes folder for visual
+
+- Navigation: as a user I...
+  * will land on **Home** by default
+  * can navigate to **Campuses** from **Home**
+  * can navigate to **Students** from **Home**
+  * can navigate to view a **Single Campus** from **Campuses**
+  * can navigate to view a **Single Student** from **Students**
+  * can navigate to view a **Single Student** from **Campuses** (for any student at that campus)
+  * can navigate to view that student's **Single Campus** from **Single Student**
+
+- Views: as a user I...
+  * see a list of all campuses on the **Campuses** view
+  * see a list of all students on the **Students** view
+  * see details about a campus on the **Single Campus** view, including that campus's students
+  * see details about a student on the **Single Student** view, including that student's campus
+
+- Actions: as a user I...
+  * can create a campus
+  * can edit a campus's info, including adding/removing a student to/from that campus
+  * can delete a campus
+  * can create a student
+  * can edit a student's info, including the campus that student is assigned to
+  * can delete a student
+
+### Routes
+
+```
+GET 
+- all campuses
+- a campus by id
+- all students
+- a student by id
 ```
 
-And then you'll have me! If I change – which I probably will – you can get the most recent
-version by doing this again:
-
-```sh
-git fetch bones
-git merge bones/master
+```
+POST
+- new campus
+- new student
 ```
 
-## 2. I need a name.
-
-I don't have a name. I think I used to have one, but it turned to dust right along with my
-heart and liver and pituitary gland and all that stuff.
-
-Anyway, I'll need one. Give me a name in `package.json`.
-
-## 3. Start my dusty heart
-
-Short and sweet:
-
-```sh
-npm install
-npm run dev
+```
+PUT
+- updated student info for one student
+- updated campus info for one campus
 ```
 
-The `dev` script sets `NODE_ENV` to "development", runs the build script in watch mode, and
-starts the server with `nodemon`. Build vs server logs are separated by a prefix. If you prefer
-to run the server and build processes separately, you can instead do:
-
-```sh
-npm run start-dev
+```
+DELETE
+- a campus
+- a student
 ```
 
-```sh
-npm run build-dev
-```
+## Evaluation
 
-In two separate terminals. The vanilla `npm start` is for production — you won't use it in development!
+- Code modularity/readability (25%)
+- Models (25%)
+- Routes (25%)
+- Frontend logic and functionality (25%)
+- Design + Bonus features (up to 10 Extra Credit points)
 
-## My anatomy
-
-`/app` has the React/Redux setup. `main.jsx` is the entry point.
-
-`/db` has the Sequelize models and database setup. It'll create the database for you if it doesn't exist,
-assuming you're using postgres.
-
-`/server` has the Express server and routes. `start.js` is the entry point.
-
-`/bin` has scripts. (Right now it has *one* script that creates a useful symlink.)
-
-## Conventions
-
-I use `require` and `module.exports` in `.js` files.
-
-I use `import` and `export` in `.jsx` files, unless `require` makes for cleaner code.
-
-I use two spaces, no semi-colons, and trailing commas where possible. I'll
-have a linter someday soon.
-
-## Quick Heroku deployment
-
-1. Set up the [Heroku command line tools](https://devcenter.heroku.com/articles/heroku-cli) and install [Yarn](https://yarnpkg.com/en/) if you haven't already (`npm install -g yarn`)
-2. `heroku login`
-3. Add a git remote for heroku:
-  - **If you're creating a new app...**
-    1. `heroku create` or `heroku create your-app-name` if you have a name in mind.
-    2. `heroku addons:create heroku-postgresql:hobby-dev` to add postgres
-    3. `npm run deploy-heroku`. This will create a new branch and compile and commit your frontend JS to it, then push that branch to Heroku.
-    4. `heroku run npm run seed` to seed the database
-
-  - **If you already have a Heroku app...**
-    1.  `heroku git:remote your-app-name` You'll need to be a collaborator on the app.
-
-Afterwards,
-  - *To deploy:* `npm run deploy-heroku`
-  - *To re-seed:* `heroku run npm run seed`

@@ -1,0 +1,10 @@
+.footer {
+	position: absolute;
+	bottom: 20px;
+	text-align: center;
+}
+
+.campusPlural {
+	flex-direction: 'row';
+	flex-wrap: 'wrap';
+}

@@ -1,61 +1,44 @@
 'use strict'
-const app = require('APP')
-    , debug = require('debug')(`${app.name}:db`) // DEBUG=your_app_name:db
-    , chalk = require('chalk')
-    , Sequelize = require('sequelize')
+const debug = require('debug')('sql');
+const chalk = require('chalk');
+const Sequelize = require('sequelize');
+const pkg = require('../package.json');
 
-    , name = (app.env.DATABASE_NAME || app.name) +
-             (app.isTesting ? '_test' : '')
-    , url = app.env.DATABASE_URL || `postgres://localhost:5432/${name}`
+const name = process.env.DATABASE_NAME || pkg.name;
+const connectionString = process.env.DATABASE_connectionString || `postgres://localhost:5432/${pkg.name}`;
 
-debug(chalk.yellow(`Opening database connection to ${url}`))
-const db = module.exports = new Sequelize(url, {
-  logging: require('debug')('sql'),  // export DEBUG=sql in the environment to
-                                     // get SQL queries
-  define: {
-    underscored: true,       // use snake_case rather than camelCase column names.
-                             // these are easier to work with in psql.
-    freezeTableName: true,   // don't change table names from the one specified
-    timestamps: true,        // automatically include timestamp columns
-  }
-})
+console.log(chalk.yellow(`Opening database connection to ${connectionString}`));
 
-// Initialize all our models and assign them as properties
-// on the database object.
-//
-// This lets us use destructuring to get at them like so:
-//
-//   const {User, Product} = require('APP/db')
-//
-Object.assign(db, require('./models')(db),
-  // We'll also make createAndSync available. It's sometimes useful in tests.
-  {createAndSync})
+// create the database instance that can be used in other database files
+const db = module.exports = new Sequelize(connectionString, {
+  logging: debug, // export DEBUG=sql in the environment to get SQL queries 
+  native: true    // lets Sequelize know we can use pg-native for ~30% more speed (if you have issues with pg-native feel free to take this out and work it back in later when we have time to help)
+});
 
-// After defining all the models, sync the database.
-// Notice that didSync *is* a Promise, rather than being a function that returns
-// a Promise. It holds the state of this initial sync.
-db.didSync = db.createAndSync()
+// run our models file (makes all associations for our Sequelize objects)
+require('./models')
 
 // sync the db, creating it if necessary
-function createAndSync(force=app.isTesting, retries=0, maxRetries=5) {
+function sync(force=false, retries=0, maxRetries=5) {
   return db.sync({force})
-    .then(() => debug(`Synced models to db ${url}`))
-    .catch(fail => {
-      // Don't do this auto-create nonsense in prod, or
-      // if we've retried too many times.
-      if (app.isProduction || retries > maxRetries) {
-        console.error(chalk.red(`********** database error ***********`))
-        console.error(chalk.red(`    Couldn't connect to ${url}`))
-        console.error()
-        console.error(chalk.red(fail))
-        console.error(chalk.red(`*************************************`))
-        return
-      }
-      // Otherwise, do this autocreate nonsense
-      debug(`${retries ? `[retry ${retries}]` : ''} Creating database ${name}...`)
-      return new Promise(resolve =>
-        // 'child_process.exec' docs: https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback
-        require('child_process').exec(`createdb "${name}"`, resolve)
-      ).then(() => createAndSync(true, retries + 1))
-    })
+  .then(ok => console.log(`Synced models to db ${connectionString}`))
+  .catch(fail => {
+    // Don't do this auto-create nonsense in prod, or
+    // if we've retried too many times. 
+    if (process.env.NODE_ENV === 'production' || retries > maxRetries) {
+      console.error(chalk.red(`********** database error ***********`))
+      console.error(chalk.red(`    Couldn't connect to ${connectionString}`))
+      console.error()
+      console.error(chalk.red(fail))
+      console.error(chalk.red(`*************************************`))
+      return
+    }
+    // Otherwise, do this autocreate nonsense
+    console.log(`${retries ? `[retry ${retries}]` : ''} Creating database ${name}...`)
+    return new Promise((resolve, reject) =>
+      require('child_process').exec(`createdb "${name}"`, resolve)
+    ).then(() => sync(true, retries + 1))
+  })
 }
+
+db.didSync = sync();

@@ -1,7 +1,5 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import campusReducer from './campus-reducer';
+import studentReducer from './student-reducer';
 
-const rootReducer = combineReducers({
-  auth: require('./auth').default,
-})
-
-export default rootReducer
+export default combineReducers({ campusReducer, studentReducer });
