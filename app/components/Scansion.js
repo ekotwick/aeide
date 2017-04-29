@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import TextInput from './TextInput';
 import TextOutput from './TextOutput';
 import { transliterator } from '../utility/transliterators';
+// import { buildSyllables } from '../utility/parsers';
 
 // ———————— COMPONENT ———————— // 
 
@@ -14,11 +15,13 @@ export default class Scansion extends React.Component {
     this.state = {
       text: '',
       transliterated: '',
+      syllables: '',
       scan: false
     }
 
     this.setText = this.setText.bind(this);
     this.setTransliterated = this.setTransliterated.bind(this);
+    this.setSyllables = this.setSyllables.bind(this);
     this.toggleScanner = this.toggleScanner.bind(this);
   }
 
@@ -29,6 +32,12 @@ export default class Scansion extends React.Component {
   setTransliterated(toTransliterate) {
     const transliterated = transliterator(toTransliterate)
     this.setState({transliterated});
+  }
+
+  setSyllables(syllables){
+    // const transliterated = this.state.transliterated;
+    // const syllables = buildSyllables(syllables);
+    this.setState({syllables})
   }
 
   toggleScanner() {
@@ -53,7 +62,9 @@ export default class Scansion extends React.Component {
             <TextOutput 
               currentTransliterated={this.state.transliterated}
               currentScanner={this.state.scan}
-              toggleScanner={this.toggleScanner}/>
+              toggleScanner={this.toggleScanner}
+              setSyllables={this.setSyllables}
+              syllables={this.state.syllables}/>
           </div>
         </div>
       </div>
