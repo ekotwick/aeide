@@ -16,4 +16,5 @@
 
 .output {
   height: 500px;
+  white-space: pre-line;
 }
