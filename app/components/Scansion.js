@@ -16,12 +16,17 @@ export default class Scansion extends React.Component {
       scan: false
     }
 
-    this.setInput = this.setInput.bind(this);
+    this.setText = this.setText.bind(this);
+    this.setScanned = this.setScanned.bind(this);
     this.toggleScanner = this.toggleScanner.bind(this);
   }
 
-  setInput(text) {
+  setText(text) {
     this.setState({text});
+  }
+
+  setScanned(scanned) {
+    this.setState({scanned});
   }
 
   toggleScanner() {
@@ -38,14 +43,15 @@ export default class Scansion extends React.Component {
         <div className='row'>
           <div className='col-lg-6'>
             <TextInput 
-              setInput={this.setInput}
+              setText={this.setText}
               currentState={this.state.text}/>
           </div>
           <div className='col-lg-6'>
             <TextOutput 
               currentState={this.state.text}
               currentScanner={this.state.scan}
-              toggleScanner={this.toggleScanner}/>
+              toggleScanner={this.toggleScanner}
+              setScanned={this.setScanned}/>
           </div>
         </div>
       </div>

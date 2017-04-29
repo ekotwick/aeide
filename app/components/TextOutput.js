@@ -1,17 +1,21 @@
 import React from 'react';
 import { transliterator } from '../utility/transliterators';
+import { buildSyllables } from '../utility/parsers';
 
 export default function TextOutPut (props) {
 
   let scanText = props.currentScanner;
 
+  const toProcess = props.currentState;
+  const transliterated = transliterator(toProcess);
+
+  const scanned = 'scan text!';
+
   const toggleScanner = () => {
     props.toggleScanner();
   };
 
-  const toProcess = props.currentState;
-  const transliterated = transliterator(toProcess);
-  const scanned = 'scan text!';
+  // do something with `setScanned` function
 
   return (
     <div>
