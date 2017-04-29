@@ -3,21 +3,12 @@ import { Link } from 'react-router';
 
 const Home = () => (
 	<div className='home'>
-		<div className='banner text-center'>
-			<h1>HOME PAGE</h1>
-		</div>
-		<div className='container'>
-			<div className='row'>
-				<div className='col-lg-6'>
-					<h3 className='text-center'>STUDENTS</h3>
-				</div>
-				<div className='col-lg-6'>
-					<Link to='campuses'>
-						<h3 className='text-center'>CAMPUSES</h3>
-					</Link>		
-				</div>
-			</div>
-		</div>
+		<h1> AEIDE </h1>
+		<h2> Type Homer verse </h2>
+		<h3> The app parses the metric elements and scans the lines for you</h3>
+		<h3>
+			<Link to='/scansion/' >Try it</Link>
+		</h3>
 	</div>
 );
 
