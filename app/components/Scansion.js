@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import TextInput from './TextInput';
+import TextOutput from './TextOutput';
 
 // ———————— COMPONENT ———————— // 
 
@@ -22,7 +23,7 @@ export default class Scansion extends React.Component {
             <TextInput />
           </div>
           <div className='col-lg-6'>
-            <h1> TEXT OUTPUT </h1>
+            <TextOutput />
           </div>
         </div>
       </div>
