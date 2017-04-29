@@ -5,7 +5,6 @@ export default function TextInput (props) {
 
   const textEnter = e => {
     console.log(e.target.value)
-    // props.setInput(transliterator(e.target.value)); // setting the state with greek text
     props.setInput(e.target.value);
   }
 
