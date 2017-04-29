@@ -8,3 +8,7 @@
 	flex-direction: 'row';
 	flex-wrap: 'wrap';
 }
+
+.output {
+  height: 500px;
+}
