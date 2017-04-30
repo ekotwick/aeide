@@ -1,7 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
-import { button, drawer } from '../utility/component-elements';
+import { button, toggle } from '../utility/component-elements';
 import { buildSyllables } from '../utility/parsers';
 
 export default class Sidebar extends React.Component {
@@ -51,10 +51,12 @@ export default class Sidebar extends React.Component {
         <div>
           <ul>
             {button('Save Session', this.showProps)}
-            {button('Build Syllables', this.toggleSyllables)}
-            {button('Scan Lines')}
             {button('Writing Guide', this.toggleWritingGuide)}
             {button('Scansion Guide', this.toggleScansionGuide)}
+            {button('Build Syllables', this.toggleSyllables)}
+            {button('Scan Lines')}
+            {toggle('Build Syllables', this.toggleSyllables)}
+            {toggle('Scan Lines')}
           </ul>
         </div>
         <div>
@@ -65,7 +67,7 @@ export default class Sidebar extends React.Component {
           </Drawer>
         </div>
         <div>
-          <Drawer width='40%'open={this.state.scansionGuide}>
+          <Drawer width='40%'position='bottom' open={this.state.scansionGuide}>
             {button('Close', this.toggleScansionGuide)}
             <p>different sample text</p>
           </Drawer>

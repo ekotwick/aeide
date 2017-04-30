@@ -1,6 +1,6 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
-import Drawer from 'material-ui/Drawer';
+import Toggle from 'material-ui/Toggle';
 
 // components listed alphabetically
 
@@ -17,3 +17,13 @@ export const button = (label, toggleFunction) => {
   )
 }
 
+export const toggle = (label, toggleFunction) => {
+  return (
+    <li>
+      <span><Toggle
+        label={label}
+        onToggle={toggleFunction}
+      /></span>
+    </li>
+  )
+}
