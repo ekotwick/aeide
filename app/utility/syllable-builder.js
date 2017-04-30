@@ -3,6 +3,9 @@ import { engToGrk, greekVowels, greekConsonants } from './dictionary';
 export const findDipthongs = (ch1, ch2, ch3, s, i) => {
   switch (ch1) {
     case '\u03B1': // case alpha: first au; second ai
+      if(ch2 === '\u03CA') {
+        return '\u03B1'
+      }
       if(ch2 === '\u03C5') { // u
         return '\u03B1\u03C5';
       } else if (ch2 === '\u03B9') { // i 

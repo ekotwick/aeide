@@ -13,7 +13,8 @@ export const engToGrk = {
     'z': '\u03B6', // zeta
     'E': '\u03B7', // eta 
     'T': '\u03B8', // theta 
-    'i': '\u03B9', // iota  
+    'i': '\u03B9', // iota
+    'ï': '\u03CA', // iota with diaeresis  
     'k': '\u03BA', // kappa 
     'l': '\u03BB', // lamba 
     'm': '\u03BC', // mu 
@@ -32,6 +33,6 @@ export const engToGrk = {
     'O': '\u03C9', // omega
 }
 
-export const greekVowels = ['\u03B1','\u03B5', '\u03B7','\u03B9', '\u03BF', '\u03C5', '\u03C9'];
+export const greekVowels = ['\u03B1','\u03B5', '\u03B7','\u03B9', '\u03CA', '\u03BF', '\u03C5', '\u03C9'];
 
 export const greekConsonants = ['\u03B2','\u03B3','\u03B4','\u03B6','\u03B8','\u03BA','\u03BB','\u03BC','\u03BD','\u03BE','\u03C0','\u03C1','\u03C2','\u03C3','\u03C4','\u03C6','\u03C7', '\u03C8'];
