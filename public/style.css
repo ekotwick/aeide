@@ -22,3 +22,31 @@
   height: 500px;
   white-space: pre-line;
 }
+
+ul {
+  display: table;
+  width: 100%;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  display: table-row;
+  width: 100%;
+}
+
+span {
+  display: table-cell;
+}
+
+body {
+  background-color: white;
+}
+
+pre {
+  background-color: white;
+}
+
+h1 {
+  padding: 50px;
+}
