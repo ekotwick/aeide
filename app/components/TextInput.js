@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 export default function TextInput (props) {
 
   const paperStyle = {
-    height: 400,
+    height: 1000,
   }
 
   const textEnter = e => {
@@ -13,22 +13,10 @@ export default function TextInput (props) {
     props.setTransliterated(e.target.value);
   }
 
-  const handleSubmit = () => {
-    let currentText = props.currentText;
-    console.log(currentText);
-  }
-
   return (
     <div>
       <Paper style={paperStyle} zDepth={3}>
-        <form className='form-vertical' onSubmit={ handleSubmit }>
-          <fieldset>
-            <textarea className='form-control input' rows='20' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
-            <button type="submit" className="btn">
-              Save Session
-            </button>
-          </fieldset>
-        </form>
+        <textarea className='form-control input' rows='20' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
       </Paper>
     </div>
   )
