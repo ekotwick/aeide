@@ -1,15 +1,13 @@
 import { engToGrk, greekVowels, greekConsonants } from './dictionary';
 
-export const findDipthongs = (ch1, ch2, ch3) => {
-  console.log(ch1, ch2, ' - inside findDipthongs');
+export const findDipthongs = (ch1, ch2, ch3, s, i) => {
   switch (ch1) {
     case '\u03B1': // case alpha: first au; second ai
       if(ch2 === '\u03C5') { // u
-        return '\u03B1\u03B5';
+        return '\u03B1\u03C5';
       } else if (ch2 === '\u03B9') { // i 
         return '\u03B1\u03B9';
       }
-      console.log(ch1, '- no pairs')
       break;
   
     case '\u03B5': // case epsilon: first ei; second eu
@@ -22,37 +20,34 @@ export const findDipthongs = (ch1, ch2, ch3) => {
       } else if (ch2 === '\u03C5') { // u 
         return '\u03B5\u03C5';
       }
-      console.log(ch1, '- no pairs')
       break;
 
     case '\u03B7': // case eta: hu
       if (ch2 === '\u03C5') {
         return '\u03B7\u03C5';
       }
-      console.log(ch1, '- no pairs')
       break;
       
     case '\u03BF': // case omicron: first oi: second ou
       if(ch2 === '\u03B9') {
+        if (checkPrefix(s,i)) return '\u03BF';
         return '\u03BF\u03B9';
       } else if (ch2 === '\u03C5') {
         return '\u03BF\u03C5';
       }
-      console.log(ch1, '- no pairs')
       break;
 
     case '\u03C5':
       if (ch2 === '\u03B9') {
         return '\u03C5\u03B9';
       } 
-      console.log(ch1, '- no pairs')
       break;
     
     default: 
       return ch1;
   }
   return ch1
-  // return toReturn;
+
 };
 
 export const checkWhiteSpace = ch => {
@@ -62,6 +57,10 @@ export const checkWhiteSpace = ch => {
 
 export const checkConsonants = (ch1, ch2, ch3) => {
 
+  if (checkWhiteSpace(ch1)) {
+    if (greekConsonants.includes(ch2) && greekConsonants.includes(ch3)) return ch2;
+    return ch1;
+  }
   if (checkWhiteSpace(ch2)) {
     if (greekConsonants.includes(ch3)) return ch1;
     return '';
@@ -71,120 +70,122 @@ export const checkConsonants = (ch1, ch2, ch3) => {
 
 };
 
-export const checkVowels = (ch1, ch2, ch3) => {
-  console.log(ch1, ch2, ' - inside checkVowels');
-  if (ch1 === '\u03B1' || ch1 === '\u03B5' || ch1 === '\u03BF') return findDipthongs(ch1, ch2, ch3);
-  console.log(ch1, ' - vowel followed by consonant');
+export const checkVowels = (ch1, ch2, ch3, s, i) => {
+  if (ch1 === '\u03B1' || ch1 === '\u03B5' || ch1 === '\u03BF') return findDipthongs(ch1, ch2, ch3, s, i);
   return ch1;
 };
 
+export const vowelCompletes = (ch1, ch2, ch3) => {
+  let case1 = false;
+  let case2 = false;
+  if (checkWhiteSpace(ch1)) {
+    case1 = true;
+  }
+  if (!(greekConsonants.includes(ch2) && greekConsonants.includes(ch3))) {
+    case2 = true;
+  }
+  return case1 && case2;
+};
+
+export const checkPrefix = (s, i) => {
+  if (s.substring(i-3,i) === '\u0020\u03C0\u03C1') return true; // case : '_pro-i'
+  if (s.substring(i-5,i) === '\u03B1\u03C0\u03BF\u03C0\u03C1') return true // case: 'apopro-i'
+  if (s.substring(i-5,i) === '\u03B5\u03C0\u03B9\u03C0\u03C1') return true // case: 'epipro-i'
+  return false;
+};
+
 export const syllablesOneLine = s => {
-  console.log(s[s.length])
 
   let parsed = '';
 
-  let i = 0; 
   let j = 0;
+  let i = 0;
+  console.log(i, s[i])
   while (i < s.length && j < 100) {
     j++
 
-    console.log('#################### STARTING: ', s[i])
-
     // leading whitespace
     while (checkWhiteSpace(s[i])) {
-      console.log('126 - LEADING WHITESPACE')
       i++;
     }
     // leading vowels
     if (greekVowels.includes(s[i])) {
-      // add vowels to parsed
-      console.log('132 - LEADING VOWEL')
 
-      let vowels = checkVowels(s[i], s[i+1], s[i+2]);
+      let vowels = checkVowels(s[i], s[i+1], s[i+2], s, i);
       parsed += vowels;
       i += vowels.length;
-      console.log('137 - ', s[i])
 
-      // console.log(parsed)
-      if (greekVowels.includes(s[i])) {
+      if (vowels.length && greekVowels.includes(s[i])) {
+        parsed += ' \u00B7 '
+        continue;
+      }
+
+      // jump to next iteration
+      if (vowelCompletes(s[i],s[i+1],s[i+2])) {
         parsed += ' \u00B7 ';
         continue;
-      } else if (checkWhiteSpace(s[i])){
-        // console.log(s[i])
-        i++;
       }
-      // check consonants: take one consonant to parsed if two successive consonants
-      console.log('145 - checking consonants')
-      let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
-      if (consonants.length || i === s.length - 1) {
-        console.log('ENDING')
-        console.log(parsed, s[i])
+
+      // check ending consonants
+      if (i === s.length - 1 && greekConsonants.includes(s[i])) {
         parsed += s[i];
         i++;
+        continue;
+      }
+
+      // check consonants: take one consonant to parsed if two successive consonants
+      let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
+      if (consonants.length || i === s.length - 1) {
+        parsed += consonants; // SHOULD ***NOT*** BE ADDING CONSONANTS; ADD S[I]
+        i += consonants.length; 
+        parsed += ' \u00B7 '
         continue;
       } else {
         parsed += ' \u00B7 '
         continue;
       }
-      console.log('154 - ', s[i])
     // end leading vowels
     // leading consonants
     } else if (greekConsonants.includes(s[i])) {
-      console.log('158 - LEADING CONSONANT')
       // add consonant to parsed
       parsed += s[i];
       i++;
-      console.log('162 - ',s[i])
       // if two consonants (e.g., 'pneuma') add the second to parsed 
       if(greekConsonants.includes(s[i])) {
-        console.log('165 - succeeding consonant')
         parsed += s[i];
-        console.log('167 - ', s[i])
         i++;
       }
       // jump to next iteration if whitespace is next character
-      while (checkWhiteSpace(s[i])) {
+      while (checkWhiteSpace(s[i])) { // this case does not happen
         i++;
-        console.log('leading consonant - breaking cuz whitespace')
-        // parsed += ' \u00B7 '
-        // continue;
       }
       // next character must be vowel: play the same vowel game as above
       if (greekVowels.includes(s[i])) {
-        console.log('179 - CLOSING THE SYLLABLE')
-        let vowels = checkVowels(s[i], s[i+1], s[i+2]);
+        let vowels = checkVowels(s[i], s[i+1], s[i+2], s, i);
         parsed += vowels;
         i += vowels.length;
-        console.log('183 - ', s[i])
 
-        if (greekVowels.includes(s[i])) {
-          parsed += ' \u00B7 ';
-          continue;
-        } else if (checkWhiteSpace(s[i])){
-          // console.log(s[i])
-          i++;
-        }
-
-
-
-
-        // if (checkWhiteSpace(s[i]) || greekVowels.includes(s[i])) {
-        //   console.log('185 - breaking out')
-        //   console.log(parsed)
-        //   parsed += ' \u00B7 '
-        //   continue;
-        // }
-
-        let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
-        if (consonants.length || i === s.length - 1) {
-          console.log('ENDING')
-          console.log(parsed, s[i])
-          parsed += s[i];
-          i++
-          continue;
-        } else {
+        if (vowels.length && greekVowels.includes(s[i])) {
           parsed += ' \u00B7 '
           continue;
+        }
+
+        if (vowelCompletes(s[i],s[i+1],s[i+2])) {
+          parsed += ' \u00B7 ';
+          continue;
+        }
+
+        if (i === s.length - 1 && greekConsonants.includes(s[i])) {
+          parsed += s[i];
+          i++;
+          continue;
+        }
+
+        let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
+        parsed += consonants;
+        i += consonants.length; 
+        if (checkWhiteSpace(s[i-1])) {
+          i++;
         }
 
       }
@@ -195,7 +196,6 @@ export const syllablesOneLine = s => {
     } else {
       parsed += ' \u00B7 ';
     }
-    console.log(parsed)
 
   } // end while loops
 }
