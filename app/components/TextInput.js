@@ -16,7 +16,7 @@ export default function TextInput (props) {
   return (
     <div>
       <Paper style={paperStyle} zDepth={3}>
-        <textarea className='form-control input' rows='20' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
+        <textarea className='form-control input' rows='200' placeholder='Enter transliterated Greek here' onChange={ textEnter } />
       </Paper>
     </div>
   )

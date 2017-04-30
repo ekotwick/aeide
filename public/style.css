@@ -1,3 +1,7 @@
+*:focus {
+  outline: none;
+}
+
 .footer {
 	position: absolute;
 	bottom: 20px;
@@ -16,6 +20,9 @@
 .input {
   font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
   font-size: 13px;
+  border: none;
+  outline: none;
+  resize: none;
 }
 
 .output {
@@ -40,11 +47,12 @@ span {
 }
 
 body {
-  background-color: white;
+  background-color: #efefef;
 }
 
 pre {
   background-color: white;
+  border: none;
 }
 
 h1 {
