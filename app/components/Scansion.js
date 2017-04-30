@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import TextInput from './TextInput';
 import TextOutput from './TextOutput';
+import Sidebar from './ScansionSidebar'; 
+import Header from './ScansionHeader';
 import { transliterator } from '../utility/transliterators';
 // import { buildSyllables } from '../utility/parsers';
 
@@ -51,7 +53,13 @@ export default class Scansion extends React.Component {
   render() {
     return (
       <div className='container-fluid'>
+        <div>
+          <Header />
+        </div>
         <div className='row'>
+          <div className='col-lg-2'>
+            <Sidebar />
+          </div>
           <div className='col-lg-5'>
             <TextInput 
               setText={this.setText}
