@@ -38,7 +38,7 @@ export const scanLine = line => {
   for (let i = 0; i < syllables.length; i++) {
 
     if (i === 0) {
-      lengths[i] = 'LONG';
+      lengths[i] = 'L';
       continue;
     }
 
@@ -49,22 +49,22 @@ export const scanLine = line => {
 
     // evaluate current syllable
     if (hasLongVowel(curSyll) || greekConsonants.includes(curSyll[currLen - 1])) {
-      lengths[i] = 'LONG';
+      lengths[i] = 'L';
     } else {
-      lengths[i] = 'SHORT';
+      lengths[i] = 's';
     }
 
     // reevaluate previous syllable
     if (hasDoubleConsonant(curSyll)) {
-      lengths[i-1] = 'LONG';
+      lengths[i-1] = 'L';
     }
 
     if (greekVowels.includes(curSyll[0]) && greekVowels.includes(prevSyll[prevLen-1]) && !hasGenetiveEnding(prevSyll)) {
-      lengths[i-1] = 'SHORT';;
+      lengths[i-1] = 's';
     }
 
     if (hasGenetiveEnding(curSyll)) {
-      lengths[i] = 'LONG';
+      lengths[i] = 'L';
     }
 
     // possible exception to rule:
@@ -75,14 +75,14 @@ export const scanLine = line => {
 
     // acceptable assumptions:
     // first syllable is _always_ long
-    lengths[0] = 'LONG';
+    lengths[0] = 'L';
     // last foot _always_ has two syllables, the first of which is _always_ long
-    lengths[numSyll - 2] = 'LONG';
-    lengths[numSyll - 1] = 'LONG';
+    lengths[numSyll - 2] = 'L';
+    lengths[numSyll - 1] = 'L';
     // second from last foot is _almost always_ long-short-short
-    lengths[numSyll - 3] = 'SHORT';
-    lengths[numSyll - 4] = 'SHORT';
-    lengths[numSyll - 5] = 'LONG';
+    lengths[numSyll - 3] = 's';
+    lengths[numSyll - 4] = 's';
+    lengths[numSyll - 5] = 'L';
 
   }
 

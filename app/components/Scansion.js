@@ -17,7 +17,7 @@ export default class Scansion extends React.Component {
       transliterated: '',
       syllables: '',
       showSyllables: false,
-      showLengths: false,
+      showScansion: false,
       lengths: '',
       scannedLines: ''
     }
@@ -26,7 +26,7 @@ export default class Scansion extends React.Component {
     this.setTransliterated = this.setTransliterated.bind(this);
     this.setSyllables = this.setSyllables.bind(this);
     this.showSyllables = this.showSyllables.bind(this);
-    this.showLengths = this.showLengths.bind(this);
+    this.showScansion = this.showScansion.bind(this);
     this.setLengths = this.setLengths.bind(this);
   }
 
@@ -51,18 +51,16 @@ export default class Scansion extends React.Component {
 
   setLengths () {
     const syllables = this.state.syllables;
+
     const lengths = scanLines(syllables);
-    // console.log(this.state.syllables)
-    // console.log(lengths);
     this.setState({lengths})
-    console.log(Array.isArray(syllables));
-    console.log(Array.isArray(lengths))
+    console.log(this.state.scannedLines);
     const scannedLines = mapScanToSyllables(syllables, lengths);
     this.setState({scannedLines});
   }
 
-  showLengths() {
-    this.setState({showLengths: !this.state.showLengths})
+  showScansion() {
+    this.setState({showScansion: !this.state.showScansion})
   }
 
   render() {
@@ -78,7 +76,7 @@ export default class Scansion extends React.Component {
               setSyllables={this.setSyllables}
               showSyllables={this.showSyllables}
               syllables={this.state.syllables}
-              showLengths={this.showLengths}
+              showScansion={this.showScansion}
               setLengths={this.setLengths}
             />
           </div>
@@ -94,7 +92,7 @@ export default class Scansion extends React.Component {
               currentTransliterated={this.state.transliterated}
               showSyllables={this.state.showSyllables}
               syllables={this.state.syllables}
-              showLengths={this.state.showLengths}
+              showScansion={this.state.showScansion}
               scannedLines={this.state.scannedLines}
             />
           </div>
