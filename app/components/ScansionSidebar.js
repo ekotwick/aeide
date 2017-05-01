@@ -16,7 +16,7 @@ export default class Sidebar extends React.Component {
     this.transliterated = this.props.currentTransliterated;
     this.setSyllables = this.props.setSyllables;
     this.showSyllables = this.props.showSyllables;
-    this.showLengths = this.props.showLengths;
+    this.showScansion = this.props.showScansion;
     this.setLengths = this.props.setLengths;
 
     this.toggleWritingGuide = this.toggleWritingGuide.bind(this);
@@ -41,7 +41,7 @@ export default class Sidebar extends React.Component {
   }
 
   toggleLengths() {
-    this.showLengths();
+    this.showScansion();
     this.setLengths();
   }
 

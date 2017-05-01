@@ -9,29 +9,17 @@ export default function TextOutPut (props) {
     height: 1000,
   }
 
+  const showScansion = props.showScansion; 
+  const scannedLines = props.scannedLines;
   const transliterated = props.currentTransliterated;
-  let showSyllables = props.showSyllables;
+  const showSyllables = props.showSyllables;
   const syllables = props.syllables;
-
-  // const toggleScanner = () => {
-  //   props.toggleScanner();
-  //   const builtSyllables = buildSyllables(transliterated);
-  //   props.setSyllables(builtSyllables);
-  //   console.log('\n\nset syllables called\n\n')
-  //   console.log(props.currentTransliterated)
-  // };
 
   return (
     <div>
       <Paper style={paperStyle} zDepth={3}>
-        <pre className='output' rows='20'> {showSyllables ? syllables : transliterated } </pre>
+        <pre className='output' rows='20'> {showSyllables ? syllables : showScansion ? scannedLines : transliterated } </pre>
       </Paper>
     </div>
   )
 }
-
-
-// pass down to section sidebare:
-// currentTransliterated
-// setSyllables
-// toggle scanner
