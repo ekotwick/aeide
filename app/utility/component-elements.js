@@ -9,7 +9,6 @@ export const button = (label, toggleFunction) => {
   return (
     <li>
       <span><FlatButton 
-        hoverColor={'blue'}
         fullWidth={true}
         onTouchTap={toggleFunction}
         label={label}/></span>
