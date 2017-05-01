@@ -80,21 +80,21 @@ export default class Scansion extends React.Component {
               setLengths={this.setLengths}
             />
           </div>
-          <div className='col-lg-5'>
-            <TextInput 
-              setText={this.setText}
-              currentText={this.state.text}
-              setTransliterated={this.setTransliterated}
-            />
-          </div>
-          <div className='col-lg-5'>
-            <TextOutput 
-              currentTransliterated={this.state.transliterated}
-              showSyllables={this.state.showSyllables}
-              syllables={this.state.syllables}
-              showScansion={this.state.showScansion}
-              scannedLines={this.state.scannedLines}
-            />
+          <div className='col-lg-10'>
+            <div className='row'>
+              <TextInput 
+                setText={this.setText}
+                currentText={this.state.text}
+                setTransliterated={this.setTransliterated}
+              />
+              <TextOutput 
+                currentTransliterated={this.state.transliterated}
+                showSyllables={this.state.showSyllables}
+                syllables={this.state.syllables}
+                showScansion={this.state.showScansion}
+                scannedLines={this.state.scannedLines}
+              />
+            </div>
           </div>
         </div>
       </div>

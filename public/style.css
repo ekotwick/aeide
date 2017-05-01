@@ -19,15 +19,15 @@
 
 .input {
   font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-  font-size: 13px;
+  font-size: 20px;
   border: none;
   outline: none;
   resize: none;
 }
 
 .output {
-  height: 500px;
-  white-space: pre-line;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 26px;
 }
 
 ul {
@@ -57,4 +57,5 @@ pre {
 
 h1 {
   padding: 50px;
+  font-size: 50px;
 }
