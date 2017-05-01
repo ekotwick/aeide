@@ -6,7 +6,7 @@ import TextOutput from './TextOutput';
 import Sidebar from './ScansionSidebar'; 
 import Header from './ScansionHeader';
 import { transliterator } from '../utility/transliterators';
-import { buildSyllables, scanLines } from '../utility/parsers';
+import { buildSyllables, scanLines, mapScanToSyllables } from '../utility/parsers';
 
 export default class Scansion extends React.Component {
 
@@ -18,7 +18,8 @@ export default class Scansion extends React.Component {
       syllables: '',
       showSyllables: false,
       showLengths: false,
-      lengths: ''
+      lengths: '',
+      scannedLines: ''
     }
 
     this.setText = this.setText.bind(this);
@@ -51,9 +52,13 @@ export default class Scansion extends React.Component {
   setLengths () {
     const syllables = this.state.syllables;
     const lengths = scanLines(syllables);
-    console.log(this.state.syllables)
-    console.log(lengths);
+    // console.log(this.state.syllables)
+    // console.log(lengths);
     this.setState({lengths})
+    console.log(Array.isArray(syllables));
+    console.log(Array.isArray(lengths))
+    const scannedLines = mapScanToSyllables(syllables, lengths);
+    this.setState({scannedLines});
   }
 
   showLengths() {
@@ -81,13 +86,17 @@ export default class Scansion extends React.Component {
             <TextInput 
               setText={this.setText}
               currentText={this.state.text}
-              setTransliterated={this.setTransliterated}/>
+              setTransliterated={this.setTransliterated}
+            />
           </div>
           <div className='col-lg-5'>
             <TextOutput 
               currentTransliterated={this.state.transliterated}
-              currentScanner={this.state.showSyllables}
-              syllables={this.state.syllables}/>
+              showSyllables={this.state.showSyllables}
+              syllables={this.state.syllables}
+              showLengths={this.state.showLengths}
+              scannedLines={this.state.scannedLines}
+            />
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ export default function TextOutPut (props) {
   }
 
   const transliterated = props.currentTransliterated;
-  let scanText = props.currentScanner;
+  let showSyllables = props.showSyllables;
   const syllables = props.syllables;
 
   // const toggleScanner = () => {
@@ -24,7 +24,7 @@ export default function TextOutPut (props) {
   return (
     <div>
       <Paper style={paperStyle} zDepth={3}>
-        <pre className='output' rows='20'> {scanText ? syllables : transliterated } </pre>
+        <pre className='output' rows='20'> {showSyllables ? syllables : transliterated } </pre>
       </Paper>
     </div>
   )
