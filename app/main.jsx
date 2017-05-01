@@ -9,13 +9,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import store from './store';
 import Routes from './routes';
 
-// render (
-//   <Provider store={store}>
-//     <Routes />
-//   </Provider>,
-//   document.getElementById('main')
-// );
-
 const Main = () => (
   <MuiThemeProvider>
     <Provider store={store}>
