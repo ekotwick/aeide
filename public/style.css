@@ -13,8 +13,8 @@
 	flex-wrap: 'wrap';
 }
 
-.GOOGLE-FONTS {
-  font-family: 'Roboto', sans-serif;
+.spacer {
+  padding: 10px;
 }
 
 .input {

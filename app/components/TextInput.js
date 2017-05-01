@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 export default function TextInput (props) {
 
   const paperStyle = {
-    height: 250,
+    height: 236,
   }
 
   const textEnter = e => {

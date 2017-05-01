@@ -19,7 +19,8 @@ export default class Scansion extends React.Component {
       showSyllables: false,
       showScansion: false,
       lengths: '',
-      scannedLines: ''
+      scannedLines: '',
+      sample: "mEnin aeide Tea pElEiadeO axilEoc \n oulomenEn E muri axaiois alge eTEke \n pollas diPTimous Suxas aïdi proiaPen \n ErOOn autous de elOria teuxe kunessin \n oiOnoisi te pasi dios d'eteleieto boulE \n eX ou dE ta prOta diastEtEn episante \n ateidEs te anaX andrOn kai dios axilleus"
     }
 
     this.setText = this.setText.bind(this);
@@ -78,15 +79,18 @@ export default class Scansion extends React.Component {
               syllables={this.state.syllables}
               showScansion={this.showScansion}
               setLengths={this.setLengths}
+              setText={this.setText}
+              sample={this.state.sample}
             />
           </div>
-          <div className='col-lg-10'>
+          <div className='col-lg-9'>
             <div className='row'>
               <TextInput 
                 setText={this.setText}
                 currentText={this.state.text}
                 setTransliterated={this.setTransliterated}
               />
+              <div className='spacer'/>
               <TextOutput 
                 currentTransliterated={this.state.transliterated}
                 showSyllables={this.state.showSyllables}

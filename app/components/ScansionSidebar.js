@@ -18,13 +18,13 @@ export default class Sidebar extends React.Component {
     this.showSyllables = this.props.showSyllables;
     this.showScansion = this.props.showScansion;
     this.setLengths = this.props.setLengths;
+    this.setText = this.props.setText;
+    this.sample = this.props.sample;
 
     this.toggleWritingGuide = this.toggleWritingGuide.bind(this);
     this.toggleScansionGuide = this.toggleScansionGuide.bind(this);
     this.toggleSyllables = this.toggleSyllables.bind(this);
     this.toggleLengths = this.toggleLengths.bind(this);
-
-    this.showProps = this.showProps.bind(this);
   }
 
   toggleWritingGuide() {
@@ -45,9 +45,8 @@ export default class Sidebar extends React.Component {
     this.setLengths();
   }
 
-  showProps() {
-    console.log(this.props)
-    console.log(this.props.syllables)
+  setSampleText() {
+    this.setText(this.sample);
   }
 
   render() {
@@ -56,7 +55,7 @@ export default class Sidebar extends React.Component {
       <div>
         <div>
           <ul>
-            {button('Save Session', this.showProps)}
+            {button('Sample', this.setSampleText)}
             {button('Writing Guide', this.toggleWritingGuide)}
             {button('Scansion Guide', this.toggleScansionGuide)}
             {button('Show Syllables', this.toggleSyllables)}
