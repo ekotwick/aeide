@@ -139,7 +139,7 @@ export const syllablesOneLine = s => {
       // check consonants: take one consonant to parsed if two successive consonants
       let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
       if (consonants.length || i === s.length - 1) {
-        parsed += consonants; // SHOULD ***NOT*** BE ADDING CONSONANTS; ADD S[I]
+        parsed += consonants; 
         i += consonants.length; 
         parsed += ' \u00B7 '
         continue;

@@ -6,9 +6,7 @@ import TextOutput from './TextOutput';
 import Sidebar from './ScansionSidebar'; 
 import Header from './ScansionHeader';
 import { transliterator } from '../utility/transliterators';
-import { buildSyllables } from '../utility/parsers';
-
-// ———————— COMPONENT ———————— // 
+import { buildSyllables, scanLines } from '../utility/parsers';
 
 export default class Scansion extends React.Component {
 
@@ -18,13 +16,17 @@ export default class Scansion extends React.Component {
       text: '',
       transliterated: '',
       syllables: '',
-      scan: false
+      showSyllables: false,
+      showLengths: false,
+      lengths: ''
     }
 
     this.setText = this.setText.bind(this);
     this.setTransliterated = this.setTransliterated.bind(this);
     this.setSyllables = this.setSyllables.bind(this);
-    this.toggleScanner = this.toggleScanner.bind(this);
+    this.showSyllables = this.showSyllables.bind(this);
+    this.showLengths = this.showLengths.bind(this);
+    this.setLengths = this.setLengths.bind(this);
   }
 
   setText(text) {
@@ -36,15 +38,26 @@ export default class Scansion extends React.Component {
     this.setState({transliterated});
   }
 
-  // setSyllables(syllables){
   setSyllables() {
     const transliterated = this.state.transliterated;
     const syllables = buildSyllables(transliterated);
     this.setState({syllables})
   }
 
-  toggleScanner() {
-    this.setState({scan: !this.state.scan})
+  showSyllables() {
+    this.setState({showSyllables: !this.state.showSyllables})
+  }
+
+  setLengths () {
+    const syllables = this.state.syllables;
+    const lengths = scanLines(syllables);
+    console.log(this.state.syllables)
+    console.log(lengths);
+    this.setState({lengths})
+  }
+
+  showLengths() {
+    this.setState({showLengths: !this.state.showLengths})
   }
 
   render() {
@@ -58,8 +71,10 @@ export default class Scansion extends React.Component {
             <Sidebar 
               currentTransliterated={this.state.transliterated}
               setSyllables={this.setSyllables}
-              toggleScanner={this.toggleScanner}
+              showSyllables={this.showSyllables}
               syllables={this.state.syllables}
+              showLengths={this.showLengths}
+              setLengths={this.setLengths}
             />
           </div>
           <div className='col-lg-5'>
@@ -71,13 +86,10 @@ export default class Scansion extends React.Component {
           <div className='col-lg-5'>
             <TextOutput 
               currentTransliterated={this.state.transliterated}
-              currentScanner={this.state.scan}
+              currentScanner={this.state.showSyllables}
               syllables={this.state.syllables}/>
           </div>
         </div>
       </div>
   )}
 }
-
-
-// ———————— CONNECT ———————— // 

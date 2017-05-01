@@ -15,11 +15,14 @@ export default class Sidebar extends React.Component {
 
     this.transliterated = this.props.currentTransliterated;
     this.setSyllables = this.props.setSyllables;
-    this.toggleScanner = this.props.toggleScanner;
+    this.showSyllables = this.props.showSyllables;
+    this.showLengths = this.props.showLengths;
+    this.setLengths = this.props.setLengths;
 
     this.toggleWritingGuide = this.toggleWritingGuide.bind(this);
     this.toggleScansionGuide = this.toggleScansionGuide.bind(this);
     this.toggleSyllables = this.toggleSyllables.bind(this);
+    this.toggleLengths = this.toggleLengths.bind(this);
 
     this.showProps = this.showProps.bind(this);
   }
@@ -33,10 +36,13 @@ export default class Sidebar extends React.Component {
   }
 
   toggleSyllables() {
-    this.toggleScanner();
-    // const builtSyllables = buildSyllables(this.transliterated);
-    // this.setSyllables(builtSyllables)
+    this.showSyllables();
     this.setSyllables();
+  }
+
+  toggleLengths() {
+    this.showLengths();
+    this.setLengths();
   }
 
   showProps() {
@@ -53,10 +59,8 @@ export default class Sidebar extends React.Component {
             {button('Save Session', this.showProps)}
             {button('Writing Guide', this.toggleWritingGuide)}
             {button('Scansion Guide', this.toggleScansionGuide)}
-            {button('Build Syllables', this.toggleSyllables)}
-            {button('Scan Lines')}
-            {toggle('Build Syllables', this.toggleSyllables)}
-            {toggle('Scan Lines')}
+            {button('Show Syllables', this.toggleSyllables)}
+            {button('Show Lengths', this.toggleLengths)}
           </ul>
         </div>
         <div>
