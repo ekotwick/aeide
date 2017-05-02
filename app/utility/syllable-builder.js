@@ -2,46 +2,46 @@ import { engToGrk, greekVowels, greekConsonants } from './dictionary';
 
 export const findDipthongs = (ch1, ch2, ch3, s, i) => {
   switch (ch1) {
-    case '\u03B1': // case alpha: first au; second ai
-      if(ch2 === '\u03CA') {
+    case '\u03B1': 
+      if(ch2 === '\u03CA') { // case aï
         return '\u03B1'
       }
-      if(ch2 === '\u03C5') { // u
+      if(ch2 === '\u03C5') { // case au
         return '\u03B1\u03C5';
-      } else if (ch2 === '\u03B9') { // i 
+      } else if (ch2 === '\u03B9') { // case ai
         return '\u03B1\u03B9';
       }
       break;
   
-    case '\u03B5': // case epsilon: first ei; second eu
-      if(ch2 === '\u03B9') { // i 
+    case '\u03B5': 
+      if(ch2 === '\u03B9') { // case ei
         return '\u03B5\u03B9';
-      } else if (ch2 === '\u03C9' && ch3 === '\u0020') { //whitespace
+      } else if (ch2 === '\u03C9' && ch3 === '\u0020') { // case ew
         return '\u03B5\u03C9'
-      } else if (ch2 === '\u03C9' && ch3 === '\u03BD') { //nu
+      } else if (ch2 === '\u03C9' && ch3 === '\u03BD') { // case ewn
         return '\u03B5\u03C9\u03BD'
-      } else if (ch2 === '\u03C5') { // u 
+      } else if (ch2 === '\u03C5') { // case eu
         return '\u03B5\u03C5';
       }
       break;
 
-    case '\u03B7': // case eta: hu
+    case '\u03B7': // case hu
       if (ch2 === '\u03C5') {
         return '\u03B7\u03C5';
       }
       break;
       
-    case '\u03BF': // case omicron: first oi: second ou
-      if(ch2 === '\u03B9') {
-        if (checkPrefix(s,i)) return '\u03BF';
+    case '\u03BF': // 
+      if(ch2 === '\u03B9') { // case oi
+        if (checkPrefix(s,i)) return '\u03BF'; // except cases pro-i
         return '\u03BF\u03B9';
-      } else if (ch2 === '\u03C5') {
+      } else if (ch2 === '\u03C5') { // case ou
         return '\u03BF\u03C5';
       }
       break;
 
     case '\u03C5':
-      if (ch2 === '\u03B9') {
+      if (ch2 === '\u03B9') { // case ui
         return '\u03C5\u03B9';
       } 
       break;
@@ -111,7 +111,7 @@ export const syllablesOneLine = s => {
     while (checkWhiteSpace(s[i])) {
       i++;
     }
-    // leading vowels
+    // leading vowel
     if (greekVowels.includes(s[i])) {
 
       let vowels = checkVowels(s[i], s[i+1], s[i+2], s, i);
@@ -123,20 +123,20 @@ export const syllablesOneLine = s => {
         continue;
       }
 
-      // jump to next iteration
+      // vowel completes syllable
       if (vowelCompletes(s[i],s[i+1],s[i+2])) {
         parsed += ' \u00B7 ';
         continue;
       }
 
-      // check ending consonants
+      // case: line ends with consonant
       if (i === s.length - 1 && greekConsonants.includes(s[i])) {
         parsed += s[i];
         i++;
         continue;
       }
 
-      // check consonants: take one consonant to parsed if two successive consonants
+      // when vowel swallows succeeding consonant
       let consonants = checkConsonants(s[i], s[i+1], s[i+2]);
       if (consonants.length || i === s.length - 1) {
         parsed += consonants; 
@@ -147,22 +147,21 @@ export const syllablesOneLine = s => {
         parsed += ' \u00B7 '
         continue;
       }
-    // end leading vowels
     // leading consonants
     } else if (greekConsonants.includes(s[i])) {
-      // add consonant to parsed
+
       parsed += s[i];
       i++;
-      // if two consonants (e.g., 'pneuma') add the second to parsed 
+      // if two consonants (e.g., 'pneuma') 
       if(greekConsonants.includes(s[i])) {
         parsed += s[i];
         i++;
       }
-      // jump to next iteration if whitespace is next character
-      while (checkWhiteSpace(s[i])) { // this case does not happen
+      // consonant ends syllable (most likely unnecessary)
+      while (checkWhiteSpace(s[i])) { 
         i++;
       }
-      // next character must be vowel: play the same vowel game as above
+      // vowel succeeds leading consonant(s); play vowel game again
       if (greekVowels.includes(s[i])) {
         let vowels = checkVowels(s[i], s[i+1], s[i+2], s, i);
         parsed += vowels;
@@ -192,8 +191,8 @@ export const syllablesOneLine = s => {
         }
 
       }
-    // end leading consonants
-    // now add spacer and move to next
+
+    // overkill protection against infinite loops
     if (i >= s.length) {
       i++;
     } else {

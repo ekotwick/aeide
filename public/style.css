@@ -57,5 +57,9 @@ pre {
 
 h1 {
   padding: 50px;
-  font-size: 50px;
+  font-size: 75px;
+}
+
+h2 {
+  font-size: 40px;
 }

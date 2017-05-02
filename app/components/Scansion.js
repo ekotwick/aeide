@@ -48,6 +48,7 @@ export default class Scansion extends React.Component {
 
   showSyllables() {
     this.setState({showSyllables: !this.state.showSyllables})
+    console.log(this.state.text);
   }
 
   setLengths () {

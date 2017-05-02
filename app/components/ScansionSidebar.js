@@ -1,7 +1,7 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import Drawer from 'material-ui/Drawer';
-import { button, toggle } from '../utility/component-elements';
+import { toggle } from '../utility/component-elements';
 import { buildSyllables } from '../utility/parsers';
 
 export default class Sidebar extends React.Component {
@@ -25,6 +25,7 @@ export default class Sidebar extends React.Component {
     this.toggleScansionGuide = this.toggleScansionGuide.bind(this);
     this.toggleSyllables = this.toggleSyllables.bind(this);
     this.toggleLengths = this.toggleLengths.bind(this);
+    this.setSampleText = this.setSampleText.bind(this);
   }
 
   toggleWritingGuide() {
@@ -46,10 +47,24 @@ export default class Sidebar extends React.Component {
   }
 
   setSampleText() {
+    console.log(this.sample);
     this.setText(this.sample);
   }
 
   render() {
+
+    const button = (label, toggleFunction) => {
+      return (
+        <li>
+          <span><FlatButton
+            fullWidth={true}
+            onTouchTap={toggleFunction}
+            label={label}
+            labelStyle={{ fontSize: '20px', height: '35px'}}
+            /></span>
+        </li>
+      )
+    }
 
     return (
       <div>
