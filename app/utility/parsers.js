@@ -27,31 +27,25 @@ export const mapScanToSyllables = (syllables, lengths) => {
 
     let syll = syllArray[i];
     let len = lenArray[i].split(',');
-    // let measures = new Array(syll.length);
     let measures = '';
     measures += '\u0336';
 
-    // measures[0] = '\u0336';
 
     let k = 1;
     for (let j = 1; j < syll.length; j++) {
 
       if (syll[j-1] === ' ' && alphabet.includes(syll[j])) {
         if (len[k] === 'L') {
-          // measures[j] = '\u0336';
           measures += '\u0336';
         } else {
-          // measures[j] = 'v'
           measures += 'v';
         }
         k += 1;
       } else {
         measures += ' ';
-        // measures[j] = ' ';
       }
     }
     result += `${measures} \n ${syll} \n\n`;
-    // result += ` ${measures.join('')} \n ${syll} \n`;
   };
 
   return result;

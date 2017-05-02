@@ -18,7 +18,7 @@ export default function TextOutPut (props) {
   return (
     <div>
       <Paper style={paperStyle} zDepth={3}>
-        <pre className='output' rows='20'> {showSyllables ? syllables : showScansion ? scannedLines : transliterated } </pre>
+        <pre className='output' rows='20'> {showScansion ? scannedLines : showSyllables ? syllables : transliterated } </pre>
       </Paper>
     </div>
   )

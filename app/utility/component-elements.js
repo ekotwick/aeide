@@ -8,8 +8,8 @@ import Toggle from 'material-ui/Toggle';
 export const button = (label, toggleFunction) => {
   return (
     <li>
-      <span><FlatButton 
-        hoverColor={'blue'}
+      <span><FlatButton
+        className='toggles'
         fullWidth={true}
         onTouchTap={toggleFunction}
         label={label}/></span>
