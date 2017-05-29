@@ -22,4 +22,5 @@ describe('<Header />', () => {
 	it('should have subtitle: "AN APP FOR HOMERIC POETRY"', () => {
 		expect(wrapper.find('h2').render().text()).to.equal('AN APP FOR HOMERIC POETRY');
 	});
-})
+	
+});
