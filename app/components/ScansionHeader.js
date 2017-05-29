@@ -6,7 +6,7 @@ export default function Header (props) {
 
   return (
     <div>
-      <span><h1>{title}</h1></span><span><h2>AN APP FOR HOMERIC POERTY</h2></span>
+      <span><h1>{title}</h1></span><span><h2>AN APP FOR HOMERIC POETRY</h2></span>
     </div>
   )
 }
