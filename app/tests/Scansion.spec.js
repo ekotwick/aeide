@@ -41,9 +41,4 @@ describe('<Scansions />', () => {
 		expect(scansionComponent.find(TextOutput)).to.have.length(1);
 	});
 
-	// it('should render 4 children components', () => {
-	// 	console.log(scansionComponent.children());
-	// 	expect(scansionComponent.children()).to.have.length(4);
-	// })
-
 });
