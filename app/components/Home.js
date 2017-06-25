@@ -30,7 +30,7 @@ const Home = () => {
       {/*
         Footer component rendered beneath Info and Text components; with text necessary to render page
       */}
-      <Col lg{3} lgOffset={3}>
+      <Col lg={3} lgOffset={3}>
         <Footer />
         <h6>2017</h6>
       </Col>
