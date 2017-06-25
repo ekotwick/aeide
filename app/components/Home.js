@@ -19,21 +19,19 @@ const Home = () => {
       {/*
         Info and Text components rendered in the same row
       */}
-      <Col lg={12}>
-        <Col lg={3}>
+      <Col md={12}>
+        <Col md={2}>
           <Info />
         </Col>
-        <Col lg={9}>
+        <Col md={10}>
           <Text />
         </Col>
       </Col>
       {/*
         Footer component rendered beneath Info and Text components; with text necessary to render page
       */}
-      <Col lg={3} lgOffset={3}>
-        <Footer />
-        <h6>2017</h6>
-      </Col>
+      <Footer />
+      <h6>2017</h6>
     </div>
   )
 }
