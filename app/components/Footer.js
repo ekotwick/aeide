@@ -12,7 +12,7 @@ const Footer = () => {
   return (
       <div>
       <p className='dev'>App by E.Kotwick</p>
-      <ul>
+      <ul className='hor-buttons'>
         <ListButton
           title="GitHub"
           cb={gitHub}
