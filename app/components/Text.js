@@ -12,7 +12,7 @@ const Text = () => {
 
   return (
     <div className='text'>
-      <ul className='toggles'>
+      <ul className='hor-buttons'>
         <ListButton
           title="Build Syllables"
           cb={showSyllables}

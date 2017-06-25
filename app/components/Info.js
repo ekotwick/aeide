@@ -13,7 +13,7 @@ const Info = () => {
 
   return (
     <div className='info'>
-      <ul className='menu'>
+      <ul className='vert-buttons'>
         <ListButton 
           title="About this app"
           cb={aboutApp}
