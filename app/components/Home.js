@@ -1,15 +1,31 @@
-import React from 'react';
-import { Link } from 'react-router';
+'use strict';
 
-const Home = () => (
-	<div className='home'>
-		<h1> AEIDE </h1>
-		<h2> Type Homer verse </h2>
-		<h3> The app parses the metric elements and scans the lines for you</h3>
-		<h3>
-			<Link to='scansion' >Try it</Link>
-		</h3>
-	</div>
-);
+import React from 'react';
+
+import Info from './Info';
+import Text from './Text'; 
+
+// const Home = () => (
+//   <div className='home'>
+//     <Info />
+//     <Text />
+//   </div>
+// );
+const Home = () => {
+  return (
+    <div className='home'>
+      <div className='header'>
+        <h3 className='name'>AEIDE</h3>
+        <p className='dev'>App by E.Kotwick</p>
+        <ul>
+          <li>LinkedIn</li>
+          <li>GitHub</li>
+        </ul> 
+      </div>
+      <Info />
+      <Text />
+    </div>
+  )
+}
 
 export default Home;
