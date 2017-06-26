@@ -7,9 +7,9 @@ import toggleParserReducer from './toggleParser';
 import toggleScannerReducer from './toggleScanner';
 
 const rootReducer = combineReducers({
-  parseLines: parserReducer,
-  scanLines: scannerReducer,
-  transliterateText: transliteratorReducer,
+  parsedLines: parserReducer,
+  scannedLines: scannerReducer,
+  transliteratedText: transliteratorReducer,
   toggleParser: toggleParserReducer,
   toggleScanner: toggleScannerReducer
 });
