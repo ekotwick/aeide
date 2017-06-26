@@ -10,9 +10,9 @@ const Footer = () => {
   const linkedIn = () => null;
 
   return (
-      <div>
-      <p className='dev'>App by E.Kotwick</p>
-      <ul className='hor-buttons'>
+      <div className='footer'>
+      <h4>App by E.Kotwick</h4>
+      <ul className='footer-buttons'>
         <ListButton
           title="GitHub"
           cb={gitHub}

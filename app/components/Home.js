@@ -16,17 +16,20 @@ const Home = () => {
         Header component
       */}
       <Header />
+      <br/>
       {/*
         Info and Text components rendered in the same row
       */}
-      <Col md={12}>
-        <Col md={2}>
-          <Info />
+      <div className='main-content'>
+        <Col md={12}>
+          <Col md={2}>
+            <Info />
+          </Col>
+          <Col md={9}>
+            <Text />
+          </Col>
         </Col>
-        <Col md={10}>
-          <Text />
-        </Col>
-      </Col>
+      </div>
       {/*
         Footer component rendered beneath Info and Text components; with text necessary to render page
       */}
