@@ -105,8 +105,10 @@ body {
 }
 
 p {
-  font-family: 'Athiti', sans-serif;
-  font-size: 20px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 18px;
+  line-height: 2em;
+  padding: 0em 1.8em;
 }
 
 .info {
@@ -126,9 +128,26 @@ p {
 
 .text-button {
   padding: .4em 2em;
-  background-color: #4CAF50;
+  background-color: rgba(76,175,80,.75);
   text-decoration: none;
   border: none;
+}
+
+.disabled-button {
+  opacity: 65%;
+  cursor: not-allowed;
+}
+
+.text-button:hover {
+  background-color: rgb(62, 183, 90);
+}
+
+.text-button:click{
+  background-color: rgb(66, 78, 244, .75);
+}
+
+.disabled-button:hover {
+  background-color: rgb(229, 128, 128);
 }
 
 .footer {
@@ -153,7 +172,11 @@ p {
   text-decoration: none;
   border: none;
   width: 100%;
-  background-color: #4CAF50;
+  background-color: rgba(76,175,80,.75);
+}
+
+.vert-button:hover {
+  background-color: rgb(62, 183, 90);
 }
 
 .main-content {
