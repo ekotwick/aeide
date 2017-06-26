@@ -16,7 +16,7 @@ export const setScannedLines = (data) => ({
   type: SET_SCANNED_LINED, data
 });
 
-export const scanLines = (parsed) => 
+export const scanParsed = (parsed) => 
   dispatch => {
     const scanned = scanLines(parsed);
     dispatch(setScannedLines(scanned));
