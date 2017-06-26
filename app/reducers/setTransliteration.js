@@ -5,7 +5,9 @@ const SET_TRANSLITERATED_TEXT = 'SET_TRANSLITERATED_TEXT';
 ////////  DEMO ONLY
 ////////
 ////////////
-const defaultState = "mEnin aeide Tea pElEiadeO axilEoc \n oulomenEn E muri axaiois alge eTEke \n pollas diPTimous Suxas aïdi proiaPen \n ErOOn autous de elOria teuxe kunessin \n oiOnoisi te pasi dios d'eteleieto boulE \n eX ou dE ta prOta diastEtEn episante \n ateidEs te anaX andrOn kai dios axilleus"
+import { transliterator } from '../language_parsers/transliterators';
+const english = "mEnin aeide Tea pElEiadeO axilEoc \n oulomenEn E muri axaiois alge eTEke \n pollas diPTimous Suxas aïdi proiaPen \n ErOOn autous de elOria teuxe kunessin \n oiOnoisi te pasi dios d'eteleieto boulE \n eX ou dE ta prOta diastEtEn episante \n ateidEs te anaX andrOn kai dios axilleus"
+const defaultState = transliterator(english);
 ////////////
 ////////////
 ////////////
