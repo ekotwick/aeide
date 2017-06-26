@@ -1,0 +1,252 @@
+/**
+
+##########
+##########
+##########      STYLE RESET
+##########
+##########
+
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+/**
+
+##########
+##########
+##########      APPLIED STYLES
+##########
+##########
+
+*/
+
+body {
+  background-color: rgba(190, 198, 191, 0.5);
+}
+
+.content-wrapper {
+  max-width: 1000px;
+  margin: 20px;
+  position: relative;
+  background-color: #aabdff;
+}
+
+.header {
+  margin-bottom: 6em;
+}
+
+.header-left {
+  position: absolute;
+  top: .5em;
+  left: 2em;
+}
+
+.text {
+  position: relative;
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 1em;
+}
+
+.greek-content {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+p {
+  font-family: 'Athiti', sans-serif;
+  font-size: 20px;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.text-buttons {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.text-buttons li {
+  display: inline;
+  margin-left: .2em;
+}
+
+.text-button {
+  padding: .4em 2em;
+  background-color: #4CAF50;
+  text-decoration: none;
+  border: none;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footer * {
+  margin: .5em .1em;
+}
+
+.footer-buttons li {
+  display: inline;
+}
+
+.vert-buttons {
+  margin-top: 0em;
+}
+
+.vert-button {
+  padding: 2em .5em;
+  margin-bottom: .1em;
+  text-decoration: none;
+  border: none;
+  width: 100%;
+  background-color: #4CAF50;
+}
+
+.main-content {
+  margin-bottom: 4em;
+}
+
+h3 {
+  font-size: 2.5em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h3, h4, h6 {
+  font-family: 'Athiti', sans-serif;
+}
+
+h6 {
+  text-align: center;
+  font-size: 1em;
+}
+
+button {
+  font-family: 'Athiti', sans-serif;
+  font-size: 1.25em;
+}
+
+/**
+
+##########
+##########      TABLET 
+##########
+
+*/
+
+@media (min-width: 501px) and (max-width: 992px) {
+  .vert-button {
+    padding: 1em 0em;
+    margin: 10px;
+  }
+
+  .vert-buttons li {
+    display: inline-block;
+    width: 30%;
+    margin: 0em .3em;
+  }
+
+  .vert-buttons {
+    text-align: center;
+  }
+}
+
+/**
+
+##########
+##########      MOBILE 
+##########
+
+*/
+
+@media screen and (max-device-width: 500px) {
+  .vert-button {
+    padding: 1em 0em;
+    margin: .1em;
+  }
+
+  .vert-buttons li {
+    display: block;
+    width: 100%;
+    margin: .1em 0em;
+  }
+
+  .vert-buttons {
+    text-align: left
+  }
+
+  .text {
+    margin-top: 4em;
+  }
+
+  .header {
+    margin: 7em 0em;
+  }
+
+  .header-left {
+    position: absolute;
+    top: 1em;
+    left: 2em;
+  }
+
+  .text-button {
+    padding: .75em 2em;
+    margin-bottom: 2em;
+  }
+}
