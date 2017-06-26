@@ -3,15 +3,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { OverlayTrigger, Popover, Button } from 'react-bootstrap';
+
 import ListButton from './ListButton';
 
-import { transliterator } from '../language_parsers/transliterators';
-import { buildSyllables } from '../language_parsers/parsers';
+import { buildSyllables, mapScanToSyllables } from '../language_parsers/parsers';
 
 import { parseLines } from '../reducers/parseLines';
 import { scanParsed } from '../reducers/scanLines';
 import { toggleParser } from '../reducers/toggleParser';
 import { toggleScanner } from '../reducers/toggleScanner';
+
+import { displayLines } from '../utils/buildJSX';
 
 
 export class Text extends React.Component {
@@ -23,49 +26,67 @@ export class Text extends React.Component {
   }
 
   toggleParser() {
-    let bool = !this.props.toggleParser;
-    this.props.dispatchParserToggler(bool);
+    let parseBool = this.props.toggleParser;
+    this.props.dispatchParserToggler(!parseBool);
+
+    let scanBool = this.props.toggleScanner;
+    if (parseBool && scanBool) {
+      this.props.dispatchScannerToggler(!scanBool);
+    }
 
     let text = this.props.transliteratedText;
     this.props.dispatchParser(text);
   }
 
   toggleScanner() {
-    let bool = !this.props.toggleScanner;
-    this.props.dispatchScannerToggler(bool);
+    let scanBool = this.props.toggleScanner;
+    let parseBool = this.props.toggleParser;
+
+    if (!parseBool && !scanBool) {
+      this.props.dispatchParserToggler(!parseBool);
+      this.props.dispatchScannerToggler(!scanBool);
+    } else if (parseBool) {
+      this.props.dispatchScannerToggler(!scanBool);
+    }
 
     let text = this.props.parsedLines !== '' ? this.props.parsedLines : buildSyllables(this.props.transliteratedText);
     this.props.dispatchScanner(text);
   }
 
-  // componentWillReceiveProps() {
-
-  // }
-
   render() {
     let parseBool = this.props.toggleParser;
     let scanBool = this.props.toggleScanner;
-    let parsed = this.props.parsedLines;
-    let scanned = this.props.scannedLines;
-    let translit = this.props.transliteratedText;
 
-    console.log(parseBool, scanBool, scanned, parsed, translit);
+    let parsed = displayLines(this.props.parsedLines);
+    let translit = displayLines(this.props.transliteratedText);
+
+    let mappedLines = mapScanToSyllables(
+                        this.props.parsedLines,
+                        this.props.scannedLines
+                       );
+    let scanned = displayLines(mappedLines);
+
+    const buttonDisabled = (
+      <Popover id="popover-trigger-click-root-close">
+        Button temporarily disabled
+      </Popover>
+    );
 
     return (
       <div className='text'>
         <ul className='text-buttons'>
           <ListButton
             className='text-button'
-            title="Build Syllables"
-            cb={toggleParser}
+            title={parseBool ? "Show Lines" : "Show Syllables"}
+            cb={this.toggleParser}
           />
           <ListButton
-            className='text-button'
+            className='text-button disabled-button'
             title="Display Lengths"
-            cb={toggleScanner}
+            cb={null}
           />
         </ul>
-        <h4 className="section-heading">Homer, <i>Iliad</i>, lines 1-7</h4>
+        <h4 className="section-heading">Homer, <em>Iliad</em>, lines 1-7</h4>
         <br/>
         <br/>
         <br/>
