@@ -3,8 +3,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { OverlayTrigger, Popover, Button } from 'react-bootstrap';
-
 import ListButton from './ListButton';
 
 import { buildSyllables, mapScanToSyllables } from '../language_parsers/parsers';
@@ -65,12 +63,6 @@ export class Text extends React.Component {
                         this.props.scannedLines
                        );
     let scanned = displayLines(mappedLines);
-
-    const buttonDisabled = (
-      <Popover id="popover-trigger-click-root-close">
-        Button temporarily disabled
-      </Popover>
-    );
 
     return (
       <div className='text'>
