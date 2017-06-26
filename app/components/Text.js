@@ -55,12 +55,12 @@ export class Text extends React.Component {
           <ListButton
             className='text-button'
             title="Build Syllables"
-            cb={showSyllables}
+            cb={toggleParser}
           />
           <ListButton
             className='text-button'
             title="Display Lengths"
-            cb={showLength}
+            cb={toggleScanner}
           />
         </ul>
         <h4 className="section-heading">Homer, <i>Iliad</i>, lines 1-7</h4>
