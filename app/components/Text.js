@@ -1,50 +1,102 @@
 'use strict';
 
 import React from 'react';
+import { connect } from 'react-redux';
 
 import ListButton from './ListButton';
 
 import { transliterator } from '../language_parsers/transliterators';
 import { buildSyllables } from '../language_parsers/parsers';
 
-const Text = () => {
+import { parseLines } from '../reducers/parseLines';
+import { scanParsed } from '../reducers/scanLines';
+import { toggleParser } from '../reducers/toggleParser';
+import { toggleScanner } from '../reducers/toggleScanner';
 
-  const parsed = false;
-  const scanned = false;
 
-  const Iliad = "mEnin aeide Tea pElEiadeO axilEoc \n oulomenEn E muri axaiois alge eTEke \n pollas diPTimous Suxas aïdi proiaPen \n ErOOn autous de elOria teuxe kunessin \n oiOnoisi te pasi dios d'eteleieto boulE \n eX ou dE ta prOta diastEtEn episante \n ateidEs te anaX andrOn kai dios axilleus"
+export class Text extends React.Component {
+  constructor(props) {
+    super(props);
 
-  const transliterated = transliterator(Iliad);
-  const syllables = buildSyllables(transliterated);
+    this.toggleParser = this.toggleParser.bind(this);
+    this.toggleScanner = this.toggleScanner.bind(this);
+  }
 
-  console.log(transliterated);
-  console.log(syllables);
+  toggleParser() {
+    let bool = !this.props.toggleParser;
+    this.props.dispatchParserToggler(bool);
 
-  const showSyllables = () => null;
+    let text = this.props.transliteratedText;
+    this.props.dispatchParser(text);
+  }
 
-  const showLength = () => null
+  toggleScanner() {
+    let bool = !this.props.toggleScanner;
+    this.props.dispatchScannerToggler(bool);
 
-  return (
-    <div className='text'>
-      <ul className='text-buttons'>
-        <ListButton
-          className='text-button'
-          title="Build Syllables"
-          cb={showSyllables}
-        />
-        <ListButton
-          className='text-button'
-          title="Display Lengths"
-          cb={showLength}
-        />
-      </ul>
-      <h4 className="section-heading">Homer, <i>Iliad</i>, lines 1-7</h4>
-      <br/>
-      <br/>
-      <br/>
-      <p className='greek-content'>{ scanned ? transliterated : syllables }</p>
-    </div>
-  )
+    let text = this.props.parsedLines !== '' ? this.props.parsedLines : buildSyllables(this.props.transliteratedText);
+    this.props.dispatchScanner(text);
+  }
+
+  // componentWillReceiveProps() {
+
+  // }
+
+  render() {
+    let parseBool = this.props.toggleParser;
+    let scanBool = this.props.toggleScanner;
+    let parsed = this.props.parsedLines;
+    let scanned = this.props.scannedLines;
+    let translit = this.props.transliteratedText;
+
+    return (
+      <div className='text'>
+        <ul className='text-buttons'>
+          <ListButton
+            className='text-button'
+            title="Build Syllables"
+            cb={showSyllables}
+          />
+          <ListButton
+            className='text-button'
+            title="Display Lengths"
+            cb={showLength}
+          />
+        </ul>
+        <h4 className="section-heading">Homer, <i>Iliad</i>, lines 1-7</h4>
+        <br/>
+        <br/>
+        <br/>
+        <p className='greek-content'>{ parseBool ? scanBool ? scanned : parsed : translit }</p>
+      </div>
+    )
+  }
 }
 
-export default Text;
+const mapStateToProps = state => ({
+  parsedLines: state.parsedLines,
+  scannedLines: state.scannedLines,
+  transliteratedText: state.transliteratedText,
+  toggleParser: state.toggleParser,
+  toggleScanner: state.toggleScanner
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatchParserToggler: (bool) => {
+      dispatch(toggleParser(bool));
+    },
+    dispatchScannerToggler: (bool) => {
+      dispatch(toggleScanner(bool));
+    },
+    dispatchParser: (text) => {
+      dispatch(parseLines(text));
+    },
+    dispatchScanner: (text) => {
+      dispatch(scanParsed(text));
+    }
+  }
+}
+
+export default connect()(Text);
+
