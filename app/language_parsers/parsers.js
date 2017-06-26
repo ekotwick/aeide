@@ -17,6 +17,7 @@ export const scanLines = str => {
 }
 
 export const mapScanToSyllables = (syllables, lengths) => {
+  if (!syllables || !lengths) return undefined;
 
   let syllArray = syllables.split('\n');
   let lenArray = lengths.split('\n')
