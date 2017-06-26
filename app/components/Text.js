@@ -49,6 +49,8 @@ export class Text extends React.Component {
     let scanned = this.props.scannedLines;
     let translit = this.props.transliteratedText;
 
+    console.log(parseBool, scanBool, scanned, parsed, translit);
+
     return (
       <div className='text'>
         <ul className='text-buttons'>
@@ -98,5 +100,5 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect()(Text);
+export default connect(mapStateToProps, mapDispatchToProps)(Text);
 
