@@ -2,7 +2,7 @@
 
 const TOGGLE_SCANNER = 'TOGGLE_SCANNER';
 
-const reducer = (state={}, action) => {
+const reducer = (state=false, action) => {
   switch(action.type) {
     case TOGGLE_SCANNER:
       return action.data;

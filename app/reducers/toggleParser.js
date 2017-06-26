@@ -2,7 +2,7 @@
 
 const TOGGLE_PARSER = 'TOGGLE_PARSER';
 
-const reducer = (state={}, action) => {
+const reducer = (state=false, action) => {
   switch(action.type) {
     case TOGGLE_PARSER:
       return action.data;
