@@ -75,6 +75,35 @@ body {
   background-color: rgba(190, 198, 191, 0.5);
 }
 
+p {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 18px;
+  line-height: 2em;
+  padding: 0em 1.8em;
+}
+
+h3 {
+  font-size: 2.5em;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+h3, h4, h6 {
+  font-family: 'Athiti', sans-serif;
+}
+
+h6 {
+  text-align: center;
+  font-size: 1em;
+}
+
+button {
+  font-family: 'Athiti', sans-serif;
+  font-size: 1.25em;
+}
+
 .content-wrapper {
   max-width: 1000px;
   margin: 20px;
@@ -102,13 +131,6 @@ body {
 .greek-content {
   word-wrap: break-word;
   word-break: break-all;
-}
-
-p {
-  font-family: 'Ubuntu Mono', monospace;
-  font-size: 18px;
-  line-height: 2em;
-  padding: 0em 1.8em;
 }
 
 .info {
@@ -183,26 +205,29 @@ p {
   margin-bottom: 4em;
 }
 
-h3 {
-  font-size: 2.5em;
+.info-text {
+  line-height: 1.3em;
 }
 
-h4 {
-  font-size: 1.5em;
+.info-list-ul {
+  list-style-type: circle;
+  padding-left: 2.5em;
 }
 
-h3, h4, h6 {
-  font-family: 'Athiti', sans-serif;
+.info-list {
+  line-height: 1.3em;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 18px;
+  padding: .5em .5em;
 }
 
-h6 {
+.share-buttons {
   text-align: center;
-  font-size: 1em;
+  margin: 1em;
 }
 
-button {
-  font-family: 'Athiti', sans-serif;
-  font-size: 1.25em;
+.share-buttons li {
+  display: inline;
 }
 
 /**
