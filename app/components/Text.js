@@ -4,8 +4,8 @@ import React from 'react';
 
 import ListButton from './ListButton';
 
-import { transliterator } from '../utility/transliterators';
-import { buildSyllables } from '../utility/parsers';
+import { transliterator } from '../language_parsers/transliterators';
+import { buildSyllables } from '../language_parsers/parsers';
 
 const Text = () => {
 
