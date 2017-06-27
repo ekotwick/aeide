@@ -1,15 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router';
+'use strict';
 
-const Home = () => (
-	<div className='home'>
-		<h1> AEIDE </h1>
-		<h2> Type Homer verse </h2>
-		<h3> The app parses the metric elements and scans the lines for you</h3>
-		<h3>
-			<Link to='scansion' >Try it</Link>
-		</h3>
-	</div>
-);
+import React from 'react';
+
+import { Col } from 'react-bootstrap';
+
+import Info from './Info';
+import Text from './Text'; 
+import Header from './Header';
+import Footer from './Footer';
+
+const Home = () => {
+  return (
+    <div className='home'>
+      {/*
+        Header component
+      */}
+      <Header />
+      <br/>
+      {/*
+        Info and Text components rendered in the same row
+      */}
+      <div className='main-content'>
+        <Col md={12}>
+          <Col md={2}>
+            <Info />
+          </Col>
+          <Col md={9}>
+            <Text />
+          </Col>
+        </Col>
+      </div>
+      {/*
+        Footer component rendered beneath Info and Text components; with text necessary to render page
+      */}
+      <Footer />
+      <h6>2017</h6>
+    </div>
+  )
+}
 
 export default Home;

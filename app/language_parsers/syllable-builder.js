@@ -103,7 +103,7 @@ export const syllablesOneLine = s => {
 
   let j = 0;
   let i = 0;
-  console.log(i, s[i])
+  
   while (i < s.length && j < 100) {
     j++
 
