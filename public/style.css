@@ -111,6 +111,10 @@ button {
   background-color: #aabdff;
 }
 
+.main-content {
+  margin-bottom: 4em;
+}
+
 .header {
   margin-bottom: 6em;
 }
@@ -133,10 +137,6 @@ button {
   word-break: break-all;
 }
 
-.info {
-  margin-bottom: 20px;
-}
-
 .text-buttons {
   position: absolute;
   top: 0px;
@@ -155,17 +155,17 @@ button {
   border: none;
 }
 
-.disabled-button {
-  opacity: 65%;
-  cursor: not-allowed;
-}
-
 .text-button:hover {
   background-color: rgb(62, 183, 90);
 }
 
 .text-button:click{
   background-color: rgb(66, 78, 244, .75);
+}
+
+.disabled-button {
+  opacity: 65%;
+  cursor: not-allowed;
 }
 
 .disabled-button:hover {
@@ -201,8 +201,8 @@ button {
   background-color: rgb(62, 183, 90);
 }
 
-.main-content {
-  margin-bottom: 4em;
+.info {
+  margin-bottom: 20px;
 }
 
 .info-text {
