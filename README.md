@@ -16,3 +16,5 @@ This is a work in progress and there much still to be done:
  - fill out the writing and scanning guides
  - make the transliteration function more intuitive/inline with accepted Enlgish-Greek transliteration conventions
  - and much much else 
+ 
+ https://git.heroku.com/aeide.git
